@@ -25,3 +25,30 @@ bundle exec jekyll serve
 
 # Now browse to http://localhost:4000
 ```
+
+```scala
+trait I
+case class X(x: Int)
+def f(x: Int): Int = x * 2
+```
+
+```python
+def f(x):
+    return x * 8
+```
+
+```cpp
+int main(char* args[]) {
+    return 0;
+}
+```
+
+```bash
+echo "hi"
+if [[ lsof -i tcp:9200 ]]
+then
+    ./start.py
+else
+    echo "error"
+fi
+```
