@@ -6,7 +6,7 @@ logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: ''
 google_analytics: 'UA-126702263-1'
-disqus: 'demowebsite'
+github_repo: 'dosht/dosht.github.io'
 mailchimp-list: 'https://github.us19.list-manage.com/subscribe/post?u=90627041a689be0cae94cec69&amp;id=681d6bb9fa'
 
 # Authors
