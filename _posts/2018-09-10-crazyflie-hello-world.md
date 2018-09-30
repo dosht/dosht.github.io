@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Crazyflie Hello World!"
-author: dosht
+author: mou
 categories: [ Crazyflie, Drones ]
 image: assets/images/Crazyflie2.0-hello-wrold.jpg
 featured: true

@@ -13,12 +13,12 @@ mailchimp-list: 'https://github.us19.list-manage.com/subscribe/post?u=90627041a6
 authors:
   mou:
     name: Mou
-    display_name: Moustafa Abdelhamid
+    display_name: Moustafa
     gravatar: d72d2b17791e9b5b7399f1046118ea51
     email: mou.abdelhamid@gmail.com
     web: https://dosht.github.io/
     twitter: https://twitter.com/dosht
-    description: "Machine Learning Engineer"
+    description: "Data Engineer - Interested in autonomous drones, Scala, IoT, machine learning and AI"
 
 # Plugins
 plugins: 
