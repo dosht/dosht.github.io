@@ -3,7 +3,7 @@ layout: post
 title:  "Drone Simulators"
 author: mou
 categories: [ simulator, Drones ]
-image: assets/images/drone-simulations/Simulator.png
+image: assets/images/drone-simulations/Simulator.PNG
 featured: true
 hidden: true
 ---
