@@ -2,27 +2,16 @@
 
 echo "Creating a new post."
 
-echo -n "Title: "
-read post_title
+read -p "Titie: " post_title
+
 post_slug=$(echo $post_title | awk '{print tolower($0)}' | sed --expression='s/\ /-/g' | sed 's/[^a-zA-Z0-9\-]//g')
-echo "slug: $post_slug"
+echo "Slug: $post_slug"
 
-post_date=$(date +'%Y-%m-%d')
-echo -n "Date [$post_date]: "
-read custom_post_date
-if [ $custom_post_date ]
-then
-    post_date=$custom_post_date
-fi
-
-echo -n "featured [true]: "
-read featured
-
-echo -n "hidden [false]: "
-read hidden
-
-echo -n "tags:"
-read tags
+read -e -p "Date: " -i $(date +'%Y-%m-%d') post_date
+read -e -p "featured: " -i "true" featured
+read -e -p "sitemap: " -i "true" sitemap
+read -e -p "hidden: " -i "false" hidden
+read -p "tags: " tags
 
 post_name="$post_date-$post_slug"
 file_path="_posts/$post_name.md"
@@ -40,6 +29,7 @@ categories: [ $tags ]
 image: $cover_file_path
 featured: $featured
 hidden: $hidden
+sitemap: $sitemap
 ---
 EOF
 
