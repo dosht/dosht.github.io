@@ -1,0 +1,47 @@
+#!/bin/bash
+
+echo "Creating a new post."
+
+echo -n "Title: "
+read post_title
+post_slug=$(echo $post_title | awk '{print tolower($0)}' | sed --expression='s/\ /-/g' | sed 's/[^a-zA-Z0-9\-]//g')
+echo "slug: $post_slug"
+
+post_date=$(date +'%Y-%m-%d')
+echo -n "Date [$post_date]: "
+read custom_post_date
+if [ $custom_post_date ]
+then
+    post_date=$custom_post_date
+fi
+
+echo -n "featured [true]: "
+read featured
+
+echo -n "hidden [false]: "
+read hidden
+
+echo -n "tags:"
+read tags
+
+post_name="$post_date-$post_slug"
+file_path="_posts/$post_name.md"
+cover_file_path="assets/images/$post_name.jpg"
+branch_name="post/$post_name"
+
+git co -b $branch_name
+
+cat >> $file_path << EOF
+---
+layout: post
+title:  "$post_title"
+author: mou
+categories: [ $tags ]
+image: $cover_file_path
+featured: $featured
+hidden: $hidden
+---
+EOF
+
+git add $file_path
+git ci -m "Create post $post_title"

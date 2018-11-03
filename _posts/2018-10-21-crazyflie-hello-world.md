@@ -61,4 +61,6 @@ Now you are ready to run the program:
 python autonomousSequence.py
 ```
 
-# First look at the code
+# First Crazyflie flying experiment in the living room
+[![Flying](https://img.youtube.com/vi/VijqE0MiTNE/0.jpg)](https://www.youtube.com/watch?v=VijqE0MiTNE)
+
