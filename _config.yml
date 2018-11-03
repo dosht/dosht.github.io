@@ -25,6 +25,7 @@ plugins:
   - jekyll-paginate
   - jekyll-archives
   - jekyll-seo-tag
+  - jekyll-sitemap
     
 # Archives
 jekyll-archives:
@@ -41,3 +42,6 @@ paginate_path: /page:num/
 # Other
 markdown: kramdown
 highlighter: rouge
+
+# Site Map
+url: "https://dosht.github.io/"
