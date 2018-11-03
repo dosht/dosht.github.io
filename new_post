@@ -27,7 +27,7 @@ read tags
 post_name="$post_date-$post_slug"
 file_path="_posts/$post_name.md"
 cover_file_path="assets/images/$post_name.jpg"
-branch_name="posts/$post_name"
+branch_name="post/$post_name"
 
 git co -b $branch_name
 
