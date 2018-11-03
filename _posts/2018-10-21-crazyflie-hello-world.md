@@ -12,7 +12,7 @@ It's a kick start to build a small drone and control it autonmously from the com
 so you will need also [Crazyradio PA](https://www.bitcraze.io/crazyradio-pa/) to connect your python program to the drone through.
 You will need also at least [`python-pip`](https://pip.pypa.io/en/stable/) and [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-# Building and configuring the drone
+## Building and configuring the drone
 ### 1. Build the drone
 First thing after getting the drone in a box, you will need to build it, so you can follow [walk through](https://www.bitcraze.io/getting-started-with-the-crazyflie-2-0/) to assemble the hardware.
 
@@ -25,7 +25,7 @@ Then, install the [client](https://www.bitcraze.io/download/) on your computer (
 Final setup, open the client and update the firmware [here] or using the mobile client.(https://www.bitcraze.io/getting-started-with-the-crazyflie-2-0/#update-fw).
  Then navigate to `connect`, select the `configure 2.0` option and change the bandwidth from `250k` to `2M`.
 
-# Getting started
+## Getting started
 Clone this [repo](https://github.com/mikecentral/Crazyflie-Drone).
 
 ```bash
@@ -38,7 +38,7 @@ Then install cflib using python pip as follows:
 pip install cflib
 ```
 
-# Run the program
+## Run the program
 Now we will run `autonomousSequence.py`, but before you run the code, you need to make sure you have enough space in your room to fly the drone in 1.5 meters in each direction, or you can set `SIDE` constant to a smaller value, e.g. `0.5`.
 
 Another practical tip: You can add the emergency landing callback.
@@ -61,6 +61,5 @@ Now you are ready to run the program:
 python autonomousSequence.py
 ```
 
-# First Crazyflie flying experiment in the living room
-[![Flying](https://img.youtube.com/vi/VijqE0MiTNE/0.jpg)](https://www.youtube.com/watch?v=VijqE0MiTNE)
-
+## First Crazyflie flying experiment in the living room
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/VijqE0MiTNE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe></p>
