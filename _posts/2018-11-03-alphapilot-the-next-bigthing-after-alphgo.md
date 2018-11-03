@@ -5,7 +5,7 @@ author: mou
 categories: [ Drones ]
 image: assets/images/2018-11-03-alphapilot-the-next-bigthing-after-alphgo.png
 featured: true
-hidden: false
+hidden: true
 ---
 ## AlphaGo
 [AlphGo](https://deepmind.com/research/alphago/) is the first computer program to defeat a professional human [Go](https://en.wikipedia.org/wiki/Go_(game)) player, the first program to defeat a Go world champion, and arguably the strongest Go player in history. Can we achieve the same breakthrough in autonomous flying?
