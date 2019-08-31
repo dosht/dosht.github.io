@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
 echo "Creating a new post."
 
 read -p "Titie: " post_title
 
-post_slug=$(echo $post_title | awk '{print tolower($0)}' | sed --expression='s/\ /-/g' | sed 's/[^a-zA-Z0-9\-]//g')
+post_slug=`python -c "print('-'.join(\"${post_title}\".lower().split()))" | sed 's/[^a-zA-Z0-9\-]//g'`
 echo "Slug: $post_slug"
 
 read -e -p "Date: " -i $(date +'%Y-%m-%d') post_date
