@@ -21,7 +21,7 @@ This post is a bit openionated because I chose only tools that worked well with 
 
 Open `~/.zsrch` and find the plugins section and add `kubectl` to the list. That's it nothing more. This will give the tab-complettion for almost everything related to `kubectl`. It will auto-complete commands, switches and even resources names.
 
-IMG
+![kubectl][kubectl img]
 
 If you are not using oh-my-zsh, you can find how to set up autocompletion for your environment in Kubernetes docs [here][enabling-shell-autocompletion]
 
@@ -50,10 +50,14 @@ Defining some aliases is also a good idea and still works with autocompletion.
 7. Stern
 
 
-[Kubernetes]: 
-[kubectl]:
+[Kubernetes]: https://kubernetes.io/
+[kubectl]: https://kubernetes.io/docs/reference/kubectl/overview/
 [minikube]: https://kubernetes.io/docs/setup/learning-environment/minikube/
-[oh-my-zsh]:
+[oh-my-zsh]: https://github.com/ohmyzsh/ohmyzsh
 [enabling-shell-autocompletion]: https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion
 
-[kube_ps1]: "kube_ps1"
+[kubectl img]: https://lh3.googleusercontent.com/9cNlg9f4nUU2qNfe9n8EHpHHEafrjzL6jyy9dRKhLPchC65VaTuaHPqU2m-lTWFrEKF-rmU26s3c_ie6xnTOT8PYgAtiaVUu1R7fNsC3adSesSZhi9zDy3IhGoJc6w7WssZnnAGZ1dfm4cGmvylPtjLr6bz2gS68fx3zcUwLnN9r776crzvaOnmYBcCpQIPriynLMmgtV9uFHy-2gA66orCOmorEIySBD2hYX7vDTE3SYmwxXL5ZevEdZPI853ei-mA69Z7VQa_YXhcHXaK_n7eausG4_0KCgLT79-4Adj4gjmwjSwwpLHEo3yMeFE1_xdRNox6yqWGBsKVZVep3nmM_q3jhvU_yk7399g3msFV-QE1VQvJfs_nVp9ltKHBm1P4YQM5AV1Mwft2FxRFCHNQiNZjOYwWQOebwAS4eUcaBb0CrPgAQIlsUmTgePppdPSIVl_rzdmbcXYNfke6N3lAh4YABCPAc5SrnWCmIQMUNJbSqVL3Wgos0k-gJud5qXHCpYDnjI8vKfuDK8kSUCLv4VgBBxVxPCsxRZwQh9Vgp9teWNRchKQWyi2qew5Llexme6FW7HLgNtTFsd2v6OAx2eOTmiwKXFoE6o-ICgkpsSk1TeAJS8xdk-fv1srV9yFQ4cCeM2565aftztASzdk-7OH75JTlMl2NRZZFMbkjO860ACw34cBtMYh_5UJg=w223-h255-no?authuser=0 "kubectl"
+
+[kube_ps1]: https://lh3.googleusercontent.com/TP1kdX_9pOx0mJ64jvACaaub8lmhxo8_-Rkk1kyXMvkvVSRJ4iNVFEBUfDvpvv-Q-qQVwjQxIskbKIvqONd3Y35CA3fqjvcjXqmt1Q5kQlktNydkgF2oRmWkL8hQ0rWt2O-hmlLiK4YZYUFaarGWDgT0oo66jFe7XGu4o51eEhRXqRQqGFk6YzlxFLnw3_Z3o3YFG_ZqQmtPhCr3H8hUZGsT0yZrJx6bHWZPZlzmVAut36h6KR_tcJpJLU1B7w4nKVElrlZDMWZTgpZFFHtrhn1fEehD0XdNZPo3KcU4OPBBQUx58pL71qmus1OqEAW2mqf0Xcyo70G_f6RKCSqElTnjmQNFsl96GnZ-6s2AtEtWxLPTOKyd1Qhc-9Wmd08AKrVt0Ttdr3U6siUQp-zGBQExAy09tnmYMKunPU0223ecBZ7iFXY4Qx-1AS1sVU6GL-m3r8jD6jfCUJl4ZzqZBMy39YmUbJ8iv1hedf6GhOk5zTS_UUrbf7ymPXU3iRUyvJikZZ0Kul6Cmn66Eoem0LEDS0v73vDqn8h4KPow9iPGMcV_byDaQOrI2jPVZBOuILHbQKus3SHFn43LXl4YtvHlLnWfT4PXKW97NXJ55SD_QBkRv0q6MpBve9LFbFxJl8RLs_UQpVxW2TJKjhI04UQ8bLAbHUCCcG5PFxysMpbswzDO4ldnbUxWlGI9ETk=w405-h285-no?authuser=0 "kube_ps1"
+
+[kube_ps1_shell]: https://lh3.googleusercontent.com/8o27ghXJqjQ_YzjPLHEiWbMcbGCRfHWV2AW05TcqzUwRnX58PPrk1DVDcEY6CR8H7_Xd0noZPi53nRMMyDvTsF1idnhK1HYzkWzgungjbryzNW8NXCJsAtjuJwpbH_BSah3K4ng2MsFkOs5pEQAgQx9L9sMYyvU4ayOwZADQ-lSHWn2V9dESpG9-wntuIAqZC1KXFpHxMcgZTEkBH6skD9Xkw3dofKCw9gKeH366JtB3JpfP-r8lZPMxMG2OhLvQNzjHwbppyg5Q1owwQEq5ACw8ExhBYMYPwvOb8kTzKz3d5iiFs9DKr7aAVDaQ9-3F04mrIGntDWCC5eyqtBX86nMCo0bLDKDCmbtF4P6IDl72eLRlMG9TtYA-hFamuKPMiysW2741PpPnQ4EmmoLMcyxVCYY2OWXH9eOl3JEAQOAUL-yi9jbFIU5DIbnlrKCFIRcBohn_-3-Uh6bfYGZmjLVpkAdgDReh1JNlXI17pFCcO13rbPH1AqygfmAd6X6uRvQq0sAO03FH2f4ZC6e1IdJ_qE7FjE8OtouPp_68XpyjlUq7FeJJFStINyeKuXx62IRi1yckLiJaXWYp99PNex2utkkvypsSVCghy3h-ANQSXmRWonlnKqdM5NqR-CxAB18VbDOYI3Lh0da5LM52Q9b-ZyM0v2IlVFUlmDgNkldoXg8cypB_gKGFdvj3v9w=w581-h83-no?authuser=0 "kube_ps1_shell"
