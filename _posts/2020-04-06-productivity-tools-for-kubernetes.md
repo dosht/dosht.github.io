@@ -41,11 +41,15 @@ This will make you shell prompt something like that:
 
 ![kube_ps1_shell][kube_ps1_shell]
 
-3. 'k' Alias
-Defining some aliases is also a good idea and still works with autocompletion. 
+3. Aliases and plugins
+## Aliases
+Defining some aliases is also a good idea and still works with autocompletion. When you use the ohmyzsh plugin kubectl as descriped above, you will get already some of useful aliases like `k` for `kubectl` and `kaf` for `kubectl apply -f` and you can find the full list in this [readme][Kubectl plugin readme]. You can edit thoses aliases by editing file `~/.oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh` and you can add your own aliases. Another good tool that I personally prefer is described in this [post][kubectl aliases post]. The useful thing about this tool that you can modify its [`generate_aliases.py`] script to generate your own aliases sytanx bases on what makes sense for you.
 
-4. Context Switcher
-5. Namespace Switcher
+## Plugins
+You can write your own kubectl plugin in a couple of minutes simply by starting its name with `kubectl-` and make it visible in your `PATH` and The plugin can be any executable file. If you want to list all available plugins, type `kubectl plugin list` which will search in you `PATh` for any file starting with `kubectl-` that means you can manage your plugins yourself by storing them in one directory, or install them using brew, apt, ..etc. There is also a plugin manager called [Krew][Krew] where you can install/remove/update plugins from a ceneteral place.
+
+The first plugin I recommend to start with is [kubectx][kubectx]. It's actually 2 plugins from the same author; One of them is for changeing the context and the other is for changing the namespace. If you are also using the oh-my-zsh plugin explained abover, you will instantly see the new context and namespace after changing is your terminal prompt.
+
 6. Kubefwd
 7. Stern
 
@@ -55,6 +59,12 @@ Defining some aliases is also a good idea and still works with autocompletion.
 [minikube]: https://kubernetes.io/docs/setup/learning-environment/minikube/
 [oh-my-zsh]: https://github.com/ohmyzsh/ohmyzsh
 [enabling-shell-autocompletion]: https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion
+[Kubectl plugin readme]: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/kubectl
+[kubectl aliases]: https://ahmet.im/blog/kubectl-aliases/
+[kubectl aliases post]: https://ahmet.im/blog/kubectl-aliases/
+[generate_aliases.py]: https://github.com/ahmetb/kubectl-aliases/blob/master/generate_aliases.py
+[Krew]: https://github.com/kubernetes-sigs/krew/
+[kubectx]: https://github.com/ahmetb/kubectx
 
 [kubectl img]: https://lh3.googleusercontent.com/9cNlg9f4nUU2qNfe9n8EHpHHEafrjzL6jyy9dRKhLPchC65VaTuaHPqU2m-lTWFrEKF-rmU26s3c_ie6xnTOT8PYgAtiaVUu1R7fNsC3adSesSZhi9zDy3IhGoJc6w7WssZnnAGZ1dfm4cGmvylPtjLr6bz2gS68fx3zcUwLnN9r776crzvaOnmYBcCpQIPriynLMmgtV9uFHy-2gA66orCOmorEIySBD2hYX7vDTE3SYmwxXL5ZevEdZPI853ei-mA69Z7VQa_YXhcHXaK_n7eausG4_0KCgLT79-4Adj4gjmwjSwwpLHEo3yMeFE1_xdRNox6yqWGBsKVZVep3nmM_q3jhvU_yk7399g3msFV-QE1VQvJfs_nVp9ltKHBm1P4YQM5AV1Mwft2FxRFCHNQiNZjOYwWQOebwAS4eUcaBb0CrPgAQIlsUmTgePppdPSIVl_rzdmbcXYNfke6N3lAh4YABCPAc5SrnWCmIQMUNJbSqVL3Wgos0k-gJud5qXHCpYDnjI8vKfuDK8kSUCLv4VgBBxVxPCsxRZwQh9Vgp9teWNRchKQWyi2qew5Llexme6FW7HLgNtTFsd2v6OAx2eOTmiwKXFoE6o-ICgkpsSk1TeAJS8xdk-fv1srV9yFQ4cCeM2565aftztASzdk-7OH75JTlMl2NRZZFMbkjO860ACw34cBtMYh_5UJg=w223-h255-no?authuser=0 "kubectl"
 
