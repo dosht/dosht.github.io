@@ -17,7 +17,7 @@ You need to have [kubectl][kubectl] installed and some K8s cluster to play with.
 This post is a bit opinionated because I chose only tools that worked well with me after trying many others. I'm also using [oh-my-zsh][oh-my-zsh], so some those tools could be different on other shells like bash or fish.
 
 
-1. Auto-complete
+# Auto-complete
 
 Open `~/.zsrch` and find the plugins section and add `kubectl` to the list. That's it nothing more. This will give the tab-completion for almost everything related to `kubectl`. It will auto-complete commands, switches and even resources names.
 
@@ -25,7 +25,7 @@ Open `~/.zsrch` and find the plugins section and add `kubectl` to the list. That
 
 If you are not using oh-my-zsh, you can find how to set up autocompletion for your environment in Kubernetes docs [here][enabling-shell-autocompletion]
 
-2. ZSH PROMPT
+# ZSH PROMPT
 
 To avoid deleting resources on production by mistake (especially if the DevOps trust you and give all permissions!), I like to always see the current context/namespace in my shell prompt. To do so in oh-my-zsh is very easy. Just open `~/.zshrc` and add `kube-ps1` to your plugins. Then add this line:
 
@@ -41,7 +41,7 @@ This will make you shell prompt something like that:
 
 ![kube_ps1_shell][kube_ps1_shell]
 
-3. Aliases and plugins
+# Aliases and plugins
 ## Aliases
 Defining some aliases is also a good idea and still works with autocompletion. When you use the oh-my-zsh plugin kubectl as described above, you will get already some of the useful aliases like `k` for `kubectl` and `kaf` for `kubectl apply -f` and you can find the full list in this [readme][Kubectl plugin readme]. You can edit those aliases by editing file `~/.oh-my-zsh/plugins/kubectl/kubectl.plugin.zsh` and you can add your aliases. Another good tool that I prefer is described in this [post][kubectl aliases post]. The useful thing about this tool that you can modify its [`generate_aliases.py`] script to generate your aliases syntax bases on what makes sense for you.
 
@@ -50,7 +50,7 @@ You can write your own kubectl plugin in a couple of minutes simply by starting 
 
 The first plugin I recommend to start with is [kubectx][kubectx]. It's actually 2 plugins from the same author; One of them is for changing the context and the other is for changing the namespace. If you are also using the oh-my-zsh plugin explained above, you will instantly see the new context and namespace after changing is your terminal prompt.
 
-6. Kubefwd
+# Kubefwd
 kubefwd is a command-line utility built to port forward multiple services within one or more namespaces on one or more Kubernetes clusters. kubefwd uses the same port exposed by the service and forwards it from a loopback IP address on your local workstation. kubefwd temporally adds domain entries to your /etc/hosts file with the service names it forwards. [link][kubefwd]
 
 We used *kubefwd* a lot while developing our Kafka ingestion services to simulate a different kind of errors or delays to stabilise our code before deploying to production.
@@ -67,7 +67,7 @@ And to forward a service e.g. Kafka. You will need `sudo` because it will add do
 sudo kubefwd service -n kafka
 ```
 
-7. Stern
+# Stern
 Stern allows you to tail multiple pods on Kubernetes and multiple containers within the pod. Each result is colour-coded for quicker debugging.
 
 The query is a regular expression so the pod name can easily be filtered and you don't need to specify the exact id (for instance omitting the deployment id). If a pod is deleted it gets removed from tail and if a new pod is added it automatically gets tailed.
