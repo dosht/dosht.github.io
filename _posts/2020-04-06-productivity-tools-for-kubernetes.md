@@ -74,6 +74,18 @@ The query is a regular expression so the pod name can easily be filtered and you
 
 When a pod contains multiple containers Stern can tail all of them too without having to do this manually for each one. Simply specify the container flag to limit what containers to show. By default all containers are listened to. [link][stern]
 
+You can install *stern* on mac also by [homebrew][homebrew]
+
+```bash
+brew install stern
+```
+
+And you can tail logs from several pods like this:
+
+```
+stern ingestion -t --since 15m
+```
+
 I was using this tool for debuging while development or deploying to dev or test environments, but for production, it will probebly produce too many logs.
 
 
