@@ -3,7 +3,7 @@ layout: post
 title:  "Productivity Tools for Kubernetes"
 author: mou
 categories: [ devops ]
-image: assets/images/2020-04-06-productivity-tools-for-kubernetes.jpg
+image: assets/images/2020-04-06-productivity-tools-for-kubernetes.png
 featured: flase
 hidden: false
 sitemap: true
