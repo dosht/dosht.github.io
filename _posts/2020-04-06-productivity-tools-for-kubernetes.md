@@ -66,8 +66,6 @@ The first plugin I recommend to start with is [kubectx][kubectx]. It's actually 
 [Krew]: https://github.com/kubernetes-sigs/krew/
 [kubectx]: https://github.com/ahmetb/kubectx
 
-[kubectl img]: assets/images/2020-04-06-productivity-tools-for-kubernetes/kubctl-plugin.png "kubectl"
-
-[kube_ps1]: assets/images/2020-04-06-productivity-tools-for-kubernetes/kube-ps1-plugin.png "kube_ps1"
-
-[kube_ps1_shell]: assets/images/2020-04-06-productivity-tools-for-kubernetes/ps1-demo.png "kube_ps1_shell"
+[kubectl img]: {{ site.baseurl }}/assets/images/2020-04-06-productivity-tools-for-kubernetes/kubctl-plugin.png "kubectl"
+[kube_ps1]: {{ site.baseurl }}/assets/images/2020-04-06-productivity-tools-for-kubernetes/kube-ps1-plugin.png "kube_ps1"
+[kube_ps1_shell]: {{ site.baseurl }}/assets/images/2020-04-06-productivity-tools-for-kubernetes/ps1-demo.png "kube_ps1_shell"
