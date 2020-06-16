@@ -51,7 +51,30 @@ You can write your own kubectl plugin in a couple of minutes simply by starting 
 The first plugin I recommend to start with is [kubectx][kubectx]. It's actually 2 plugins from the same author; One of them is for changeing the context and the other is for changing the namespace. If you are also using the oh-my-zsh plugin explained abover, you will instantly see the new context and namespace after changing is your terminal prompt.
 
 6. Kubefwd
+kubefwd is a command line utility built to port forward multiple services within one or more namespaces on one or more Kubernetes clusters. kubefwd uses the same port exposed by the service and forwards it from a loopback IP address on your local workstation. kubefwd temporally adds domain entries to your /etc/hosts file with the service names it forwards. [link][kubefwd]
+
+We used *kubefwd* a lot while developing our Kafka ingestion services to simulate different kind of errors or delays to stabelize our code bedore deploying to production.
+
+To install *kubefwd* on mac, you can use [homebrew][homebrew]
+
+```bash
+brew install txn2/tap/kubefwd
+```
+
+And to forward a service e.g. Kafka. You will need `sudo` because it will add domain entries in `/etc/hosts`.
+
+```bash
+sudo kubefwd service -n kafka
+```
+
 7. Stern
+Stern allows you to tail multiple pods on Kubernetes and multiple containers within the pod. Each result is color coded for quicker debugging.
+
+The query is a regular expression so the pod name can easily be filtered and you don't need to specify the exact id (for instance omitting the deployment id). If a pod is deleted it gets removed from tail and if a new pod is added it automatically gets tailed.
+
+When a pod contains multiple containers Stern can tail all of them too without having to do this manually for each one. Simply specify the container flag to limit what containers to show. By default all containers are listened to. [link][stern]
+
+I was using this tool for debuging while development or deploying to dev or test environments, but for production, it will probebly produce too many logs.
 
 
 [Kubernetes]: https://kubernetes.io/
@@ -65,6 +88,9 @@ The first plugin I recommend to start with is [kubectx][kubectx]. It's actually 
 [generate_aliases.py]: https://github.com/ahmetb/kubectl-aliases/blob/master/generate_aliases.py
 [Krew]: https://github.com/kubernetes-sigs/krew/
 [kubectx]: https://github.com/ahmetb/kubectx
+[kubefwd]: https://github.com/txn2/kubefwd
+[stern]: https://github.com/wercker/stern
+[homebrew]: https://brew.sh
 
 [kubectl img]: {{ site.baseurl }}/assets/images/2020-04-06-productivity-tools-for-kubernetes/kubctl-plugin.png "kubectl"
 [kube_ps1]: {{ site.baseurl }}/assets/images/2020-04-06-productivity-tools-for-kubernetes/kube-ps1-plugin.png "kube_ps1"
