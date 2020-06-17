@@ -8,7 +8,7 @@ featured: flase
 hidden: false
 sitemap: true
 ---
-If you are using [Kubernetes][Kubernetes] and you still have to write all [kubectl][[kubectl] commands like this: `kubectl --context my-ctx --namespace my-namespace ...`, then you are probably wasting so much time in typing repeated things and memorizing commands or keeping too many notes. There are a lot of useful tools that can make working with kubectl much more productive. I will list in this post some of those tools that saved time for me and made me more confident while working on Kubernetes.
+If you are using [Kubernetes][Kubernetes] and you still have to write all [kubectl][kubectl] commands like this: `kubectl --context my-ctx --namespace my-namespace ...`, then you are probably wasting so much time in typing repeated things and memorizing commands or keeping too many notes. There are a lot of useful tools that can make working with kubectl much more productive. I will list in this post some of those tools that saved time for me and made me more confident while working on Kubernetes.
 
 # Before you begin
 
