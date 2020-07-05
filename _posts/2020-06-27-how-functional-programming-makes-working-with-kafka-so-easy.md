@@ -3,7 +3,7 @@ layout: post
 title:  "How Functional Programming Makes Working with Kafka Easier?"
 author: mou
 categories: [ scala, kafka ]
-image: assets/images/2020-06-27-how-functional-programming-makes-working-with-kafka-so-easy.jpg
+image: assets/images/2020-06-27-how-functional-programming-makes-working-with-kafka-so-easy.png
 featured: true
 hidden: false
 sitemap: true
@@ -12,9 +12,9 @@ sitemap: true
 
 When your system starts to grow and split into multiple services, you will presumably need a way to send messages between those services for processing. In a clean and nice architecture, each service should have a bounded context that defines its space of responsibility and other requirements outside of that context should be handled by other components including messages delivery, so the service will only emit a message (fire-and-forget) and other services that are interested in processing those messages will catch them.
 
-A message queue (publish-subscribe-based) will be a good fit here. And in my opinion Kafka should not be the default go-to choice when you think of a pub-sub because of its complexity and there are other solutions that are designed to simplify the development and infrastructure work with reasonable trade-offs such as GCP PubSub, AWS Kinesis, or NATS, however, if non of them met your requirements and you want to deploy Kafka, then there are a few things you need to take care of.
+A message queue (publish-subscribe-based) will be a good fit here. And in my opinion, Kafka should not be the default go-to choice when you think of a pub-sub because of its complexity and other solutions are designed to simplify the development and infrastructure work with reasonable trade-offs such as GCP PubSub, AWS Kinesis, or NATS, however, if none of them met your requirements and you want to deploy Kafka, then there are a few things you need to take care of.
 
-In this blog post, We will build a simple and powerful Scala client in functional style that solves some of hidden Kafka client difficulties and potentially simplifies testing, error handling, and other aspects as you will see later in the companion project.
+In this blog post, We will build a simple and powerful Scala client in a functional style that solves some of hidden Kafka client difficulties and potentially simplifies testing, error handling, and other aspects as you will see later in the companion project.
 
 # Kafka with Scala
 
@@ -27,13 +27,13 @@ Kafka consists of two sides: A producer that produces messages to a topic and a 
 This is not meant to be a full comparison, so it's enough to list some available clients with a couple of words about each of them.
 
 1. Apache Kafka (Java) Client: This is the [official Java client][Apache Kafka Client]. It has a Java API and I couldn't find a Scala wrapper for it to make functional or thread-safe, ..etc
-2. [CakeSolutions client][CakeSolutions client]: It's a well-written Akka-based client. I used also this client myself since I was working in [Cake Solutions][cakesolutions]. My former colleague David Piggott has a nice [blog post][David's Post] about it, but that was before it has been acquired by Diseny and I'm not sure how much they're still maintaining it.
+2. [CakeSolutions client][CakeSolutions client]: It's a well-written Akka-based client. I used also this client myself since I was working in [Cake Solutions][cakesolutions]. My former colleague David Piggott has a nice [blog post][David's Post] about it, but that was before it has been acquired by Disney and I'm not sure how much they're still maintaining it.
 3. [Alpakka project][Alpakka project]: This client is based on Akka stream. I used this one also in a previous project and fits well if you have already Akka streams application. It's helpful to design complex streaming graphs involving many Kafka topics and it helps also in managing offsets and applying back-pressure.
 4. [Lagom Kafka Client][Lagom Kafka Client]: This based on Alpakka client, but it's designed to work with Lagom
 
 ## Apache Kafka Client
 
-Let's first start with the vanilla Java-based official client and see how we will enhance it with [Cats][Cats] and [Cats Effect][Cats Effect] to make if more compatible with Scala and functional programming.
+Let's first start with the vanilla Java-based official client and see how we will enhance it with [Cats][Cats] and [Cats Effect][Cats Effect] to make it more compatible with Scala and functional programming.
 
 The simple imperative code looks like this <sup>[2][Kafa client tutorial]</sup>:
 
@@ -55,6 +55,8 @@ def consumeFromKafka(topic: String) = {
 }
 ```
 
+![1][1] THIS IS TOO JAVA! 
+
 # Cats with Kafka
 
 [Cats][Cats] is a library that provides type classes and data structures for functional programming in Scala like Monad, Semigroup, Monoid, Applicative, ..etc and [Cats Effect][Cats Effect] that mainly provides the IO monad that describes an operation that performs a side effect where the result of the effect can be returned synchronously or asynchronously. With [Cats][Cats] and [Cats Effect][Cats Effect], you can define all the logic of your program without running anything (including operations that have side effects) and separately run the program (or part of it) synchronously or asynchronously. This will help us to improve testability and maintainability and help understand potential sources of errors.
@@ -63,7 +65,7 @@ def consumeFromKafka(topic: String) = {
 
 ### Apache Kafka Client is not Thread-Safe
 
-As you saw above, the consumer is wrapped in `while(true)` block which obviously runs in a single thread. You need to handle messages in multiple threads for better utilization, but if you try to call `kafkaConsumer.poll` on a thread other than the one that it was defined at, you will get an exception. To solve this, we will keep calling `kafkaConsumer.poll` in the same thread and we will use another thread pool for handling messages. Let's see how this is really easy with cats.
+As you saw above, the consumer is wrapped in `while(true)` block which runs in a single thread. You need to handle messages in multiple threads for better utilization, but if you try to call `kafkaConsumer.poll` on a thread other than the one that it was defined at, you will get an exception. To solve this, we will keep calling `kafkaConsumer.poll` in the same thread and we will use another thread pool for handling messages. Let's see how this is easy with cats.
 
 ### Cats ContextShift
 
@@ -111,7 +113,7 @@ Now, we can create the Kafka consumer in the Kafka thread that we just defined i
 kafkaContext.execute(new KafkaConsumer(...))
 ```
 
-Since we need to close the Kafka consumer after we don't need it anymore, it's more suitable to define it as a closable resource and Cats provide a resource abstraction for that called [`Resource`][cats resource] used for acquiring and releasing resources using `Resource.make` function that takes 2 functions `acquire` and `release` and returns a `Resource` instance where you can call `use` that will allow you to use the resource and make sure to release it after you're done with it. We can do the same thing `KafkaContext`.
+Since we need to close the Kafka consumer after we don't need it anymore, it's more suitable to define it as a closable resource and Cats provide a resource abstraction for that called [`Resource`][cats resource] used for acquiring and releasing resources using `Resource.make` function that takes 2 functions: `acquire` and `release` and returns a `Resource` instance where you can call `use` that will allow you to use the resource and make sure to release it after you're done with it. We can do the same thing `KafkaContext`.
 
 ```scala
 def createKafkaConsumer = kafkaContext ~> new KafkaConsumer(...)
@@ -138,11 +140,13 @@ def consume: IO[Unit] = for {
   } yield ()
 ```
 
-Here, only `kafkaConsumer.poll` will run in the Kafka thread and `messageHandler.handleMessage(messages)` will run in another thread pool decided on the caller of `consume` of function. This is a functional alternative to `while(true)` used in the vanilla example.
+Here, only `kafkaConsumer.poll` will run in the Kafka thread and `messageHandler.handleMessage(messages)` will run in another thread pool decided on the caller of `consume` function. This is a functional alternative to `while(true)` used in the vanilla example.
 
 Note that we called `consume` in a non-tail-recursive position, but it's [stack safe][thread safety] means it will not throw `StackOverFlowError`. Remember that `consume` function doesn't actually run anything, it just describes the task, so it lets `cats.IO` decide how to execute it and `cats.IO.flatMap` runs in a [trampoline context][trampoline context]
 
 ## Putting them all together
+
+![2][2]
 
 **`Consumer.scala`**
 
@@ -253,15 +257,15 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test-top
 
 Now, go to the third and start typing some words and press enter. Each line will be a string message and you should see them in the Scala consumer app that runs in the fourth terminal.
 
-If you want see the full ready-to-run code, please check out this [branch][blog branch].
+If you want to see the full ready-to-run code, please check out this [branch][blog branch].
 
-# Summery
+# Summary
 
-In this section, we developed a functional Kafka Scala consumer with the help of Cats and Cats Effects. We saw how we could run Kafka client in its single thread because it's not thread safe and we saw how it's easy to switch thread pools so we can process messages in a suitable thread pool and we did this using ContextShift provided by cats library. Finally we tested everything together including running Kafka and Zookeeper and sent messages from Kafka producer console and received them in our Scala consumer.
+In this section, we developed a functional Kafka Scala consumer with the help of Cats and Cats Effects. We saw how we could run Kafka client in its single thread because it's not thread-safe and we saw how it's easy to switch thread pools so we can process messages in a suitable thread pool and we did this using ContextShift provided by cats library. Finally, we tested everything together including running Kafka and Zookeeper and sent messages from Kafka producer console and received them in our Scala consumer.
 
 In [`master`][master branch] branch of the same repo, You can find more complete code that includes testing, error handling, logging, monitoring and deployment to Kubernetes. If you are interested in any of those topics, please let me know in comments and I will write about them in future posts.
 
-
+![3][3]
 
 [Apache Kafka Client]: https://kafka.apache.org/documentation/#api
 [CakeSolutions client]: https://github.com/cakesolutions/scala-kafka-client/
@@ -287,3 +291,7 @@ In [`master`][master branch] branch of the same repo, You can find more complete
 
 [master branch]: https://github.com/dosht/kafka-with-cats/
 [blog branch]: https://github.com/dosht/kafka-with-cats/tree/blog-post-code
+
+[1]: {{ site.baseurl }}/assets/images/2020-06-27-how-functional-programming-makes-working-with-kafka-so-easy/1.png "1"
+[2]: {{ site.baseurl }}/assets/images/2020-06-27-how-functional-programming-makes-working-with-kafka-so-easy/2.png "2"
+[3]: {{ site.baseurl }}/assets/images/2020-06-27-how-functional-programming-makes-working-with-kafka-so-easy/3.png "3"
